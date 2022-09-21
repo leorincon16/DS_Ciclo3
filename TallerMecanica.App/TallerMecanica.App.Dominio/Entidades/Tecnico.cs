@@ -7,7 +7,7 @@ namespace TallerMecanica.App.Dominio.Entidades
 {
     public class Tecnico:Persona
     {
-        public int TecnicoId { get; set; }
+        // public int TecnicoId { get; set; }
         public string Usuario { get; set; }
         public string Contraseña { get; set; }
         public DateTime FechaContrato { get; set;}

@@ -9,6 +9,6 @@ namespace TallerMecanica.App.Dominio.Entidades
     {
         public int RepuestoId { get; set; }
         public string NombreRespuesto {get;set;}
-        
+        public Revision SuRevision {get;set;}
     }
 }

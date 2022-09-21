@@ -3,17 +3,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TallerMecanica.App.Persistencia.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Clientes",
+                name: "Personas",
                 columns: table => new
                 {
-                    ClienteId = table.Column<int>(type: "int", nullable: false)
+                    PersonaId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PersonaId = table.Column<int>(type: "int", nullable: false),
                     NumeroIdentificacion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Nombres = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Apellidos = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -25,31 +24,44 @@ namespace TallerMecanica.App.Persistencia.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clientes", x => x.ClienteId);
+                    table.PrimaryKey("PK_Personas", x => x.PersonaId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cliente",
+                columns: table => new
+                {
+                    PersonaId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cliente", x => x.PersonaId);
+                    table.ForeignKey(
+                        name: "FK_Cliente_Personas_PersonaId",
+                        column: x => x.PersonaId,
+                        principalTable: "Personas",
+                        principalColumn: "PersonaId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Tecnicos",
                 columns: table => new
                 {
-                    TecnicoId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PersonaId = table.Column<int>(type: "int", nullable: false),
                     Usuario = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Contraseña = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FechaContrato = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PersonaId = table.Column<int>(type: "int", nullable: false),
-                    NumeroIdentificacion = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Nombres = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Apellidos = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Direccion = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Telefono = table.Column<int>(type: "int", nullable: false),
-                    Genero = table.Column<int>(type: "int", nullable: false),
-                    Ciudad = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    FechaContrato = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tecnicos", x => x.TecnicoId);
+                    table.PrimaryKey("PK_Tecnicos", x => x.PersonaId);
+                    table.ForeignKey(
+                        name: "FK_Tecnicos_Personas_PersonaId",
+                        column: x => x.PersonaId,
+                        principalTable: "Personas",
+                        principalColumn: "PersonaId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -68,10 +80,10 @@ namespace TallerMecanica.App.Persistencia.Migrations
                 {
                     table.PrimaryKey("PK_Vehiculos", x => x.VehiculoId);
                     table.ForeignKey(
-                        name: "FK_Vehiculos_Clientes_ClienteId",
+                        name: "FK_Vehiculos_Cliente_ClienteId",
                         column: x => x.ClienteId,
-                        principalTable: "Clientes",
-                        principalColumn: "ClienteId",
+                        principalTable: "Cliente",
+                        principalColumn: "PersonaId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -88,17 +100,17 @@ namespace TallerMecanica.App.Persistencia.Migrations
                     EstadoFiltroAire = table.Column<int>(type: "int", nullable: false),
                     ObservacionMantenimiento = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SuVehiculoVehiculoId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    SuTecnicoTecnicoId = table.Column<int>(type: "int", nullable: true),
+                    SuTecnicoPersonaId = table.Column<int>(type: "int", nullable: true),
                     Valor = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Revisiones", x => x.MatenimientoId);
                     table.ForeignKey(
-                        name: "FK_Revisiones_Tecnicos_SuTecnicoTecnicoId",
-                        column: x => x.SuTecnicoTecnicoId,
+                        name: "FK_Revisiones_Tecnicos_SuTecnicoPersonaId",
+                        column: x => x.SuTecnicoPersonaId,
                         principalTable: "Tecnicos",
-                        principalColumn: "TecnicoId",
+                        principalColumn: "PersonaId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Revisiones_Vehiculos_SuVehiculoVehiculoId",
@@ -115,28 +127,28 @@ namespace TallerMecanica.App.Persistencia.Migrations
                     RepuestoId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NombreRespuesto = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RevisionMatenimientoId = table.Column<int>(type: "int", nullable: true)
+                    SuRevisionMatenimientoId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Repuestos", x => x.RepuestoId);
                     table.ForeignKey(
-                        name: "FK_Repuestos_Revisiones_RevisionMatenimientoId",
-                        column: x => x.RevisionMatenimientoId,
+                        name: "FK_Repuestos_Revisiones_SuRevisionMatenimientoId",
+                        column: x => x.SuRevisionMatenimientoId,
                         principalTable: "Revisiones",
                         principalColumn: "MatenimientoId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Repuestos_RevisionMatenimientoId",
+                name: "IX_Repuestos_SuRevisionMatenimientoId",
                 table: "Repuestos",
-                column: "RevisionMatenimientoId");
+                column: "SuRevisionMatenimientoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Revisiones_SuTecnicoTecnicoId",
+                name: "IX_Revisiones_SuTecnicoPersonaId",
                 table: "Revisiones",
-                column: "SuTecnicoTecnicoId");
+                column: "SuTecnicoPersonaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Revisiones_SuVehiculoVehiculoId",
@@ -164,7 +176,10 @@ namespace TallerMecanica.App.Persistencia.Migrations
                 name: "Vehiculos");
 
             migrationBuilder.DropTable(
-                name: "Clientes");
+                name: "Cliente");
+
+            migrationBuilder.DropTable(
+                name: "Personas");
         }
     }
 }

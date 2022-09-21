@@ -19,9 +19,9 @@ namespace TallerMecanica.App.Persistencia.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("TallerMecanica.App.Dominio.Entidades.Cliente", b =>
+            modelBuilder.Entity("TallerMecanica.App.Dominio.Entidades.Persona", b =>
                 {
-                    b.Property<int>("ClienteId")
+                    b.Property<int>("PersonaId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -47,15 +47,12 @@ namespace TallerMecanica.App.Persistencia.Migrations
                     b.Property<string>("NumeroIdentificacion")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PersonaId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Telefono")
                         .HasColumnType("int");
 
-                    b.HasKey("ClienteId");
+                    b.HasKey("PersonaId");
 
-                    b.ToTable("Clientes");
+                    b.ToTable("Personas");
                 });
 
             modelBuilder.Entity("TallerMecanica.App.Dominio.Entidades.Repuesto", b =>
@@ -68,12 +65,12 @@ namespace TallerMecanica.App.Persistencia.Migrations
                     b.Property<string>("NombreRespuesto")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RevisionMatenimientoId")
+                    b.Property<int?>("SuRevisionMatenimientoId")
                         .HasColumnType("int");
 
                     b.HasKey("RepuestoId");
 
-                    b.HasIndex("RevisionMatenimientoId");
+                    b.HasIndex("SuRevisionMatenimientoId");
 
                     b.ToTable("Repuestos");
                 });
@@ -100,7 +97,7 @@ namespace TallerMecanica.App.Persistencia.Migrations
                     b.Property<string>("ObservacionMantenimiento")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SuTecnicoTecnicoId")
+                    b.Property<int?>("SuTecnicoPersonaId")
                         .HasColumnType("int");
 
                     b.Property<string>("SuVehiculoVehiculoId")
@@ -114,59 +111,11 @@ namespace TallerMecanica.App.Persistencia.Migrations
 
                     b.HasKey("MatenimientoId");
 
-                    b.HasIndex("SuTecnicoTecnicoId");
+                    b.HasIndex("SuTecnicoPersonaId");
 
                     b.HasIndex("SuVehiculoVehiculoId");
 
                     b.ToTable("Revisiones");
-                });
-
-            modelBuilder.Entity("TallerMecanica.App.Dominio.Entidades.Tecnico", b =>
-                {
-                    b.Property<int>("TecnicoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Apellidos")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Ciudad")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Contraseña")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Direccion")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("FechaContrato")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Genero")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nombres")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NumeroIdentificacion")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PersonaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Telefono")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Usuario")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("TecnicoId");
-
-                    b.ToTable("Tecnicos");
                 });
 
             modelBuilder.Entity("TallerMecanica.App.Dominio.Entidades.Vehiculo", b =>
@@ -199,18 +148,43 @@ namespace TallerMecanica.App.Persistencia.Migrations
                     b.ToTable("Vehiculos");
                 });
 
+            modelBuilder.Entity("TallerMecanica.App.Dominio.Entidades.Cliente", b =>
+                {
+                    b.HasBaseType("TallerMecanica.App.Dominio.Entidades.Persona");
+
+                    b.ToTable("Cliente");
+                });
+
+            modelBuilder.Entity("TallerMecanica.App.Dominio.Entidades.Tecnico", b =>
+                {
+                    b.HasBaseType("TallerMecanica.App.Dominio.Entidades.Persona");
+
+                    b.Property<string>("Contraseña")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("FechaContrato")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Usuario")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("Tecnicos");
+                });
+
             modelBuilder.Entity("TallerMecanica.App.Dominio.Entidades.Repuesto", b =>
                 {
-                    b.HasOne("TallerMecanica.App.Dominio.Entidades.Revision", null)
+                    b.HasOne("TallerMecanica.App.Dominio.Entidades.Revision", "SuRevision")
                         .WithMany("SusRepuestos")
-                        .HasForeignKey("RevisionMatenimientoId");
+                        .HasForeignKey("SuRevisionMatenimientoId");
+
+                    b.Navigation("SuRevision");
                 });
 
             modelBuilder.Entity("TallerMecanica.App.Dominio.Entidades.Revision", b =>
                 {
                     b.HasOne("TallerMecanica.App.Dominio.Entidades.Tecnico", "SuTecnico")
                         .WithMany("SusRevisiones")
-                        .HasForeignKey("SuTecnicoTecnicoId");
+                        .HasForeignKey("SuTecnicoPersonaId");
 
                     b.HasOne("TallerMecanica.App.Dominio.Entidades.Vehiculo", "SuVehiculo")
                         .WithMany("SusRevisiones")
@@ -234,7 +208,20 @@ namespace TallerMecanica.App.Persistencia.Migrations
 
             modelBuilder.Entity("TallerMecanica.App.Dominio.Entidades.Cliente", b =>
                 {
-                    b.Navigation("Vehiculos");
+                    b.HasOne("TallerMecanica.App.Dominio.Entidades.Persona", null)
+                        .WithOne()
+                        .HasForeignKey("TallerMecanica.App.Dominio.Entidades.Cliente", "PersonaId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TallerMecanica.App.Dominio.Entidades.Tecnico", b =>
+                {
+                    b.HasOne("TallerMecanica.App.Dominio.Entidades.Persona", null)
+                        .WithOne()
+                        .HasForeignKey("TallerMecanica.App.Dominio.Entidades.Tecnico", "PersonaId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TallerMecanica.App.Dominio.Entidades.Revision", b =>
@@ -242,12 +229,17 @@ namespace TallerMecanica.App.Persistencia.Migrations
                     b.Navigation("SusRepuestos");
                 });
 
-            modelBuilder.Entity("TallerMecanica.App.Dominio.Entidades.Tecnico", b =>
+            modelBuilder.Entity("TallerMecanica.App.Dominio.Entidades.Vehiculo", b =>
                 {
                     b.Navigation("SusRevisiones");
                 });
 
-            modelBuilder.Entity("TallerMecanica.App.Dominio.Entidades.Vehiculo", b =>
+            modelBuilder.Entity("TallerMecanica.App.Dominio.Entidades.Cliente", b =>
+                {
+                    b.Navigation("Vehiculos");
+                });
+
+            modelBuilder.Entity("TallerMecanica.App.Dominio.Entidades.Tecnico", b =>
                 {
                     b.Navigation("SusRevisiones");
                 });

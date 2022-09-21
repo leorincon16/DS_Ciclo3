@@ -7,7 +7,7 @@ namespace TallerMecanica.App.Dominio.Entidades
 {
     public class Cliente:Persona
     {
-        public int ClienteId {get;set; }
+        // public int ClienteId {get;set; }
         public ICollection<Vehiculo> Vehiculos {get;set;}
 
     }
