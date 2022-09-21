@@ -1,4 +1,5 @@
 ﻿using System;
+using TallerMecanica.App.Dominio;
 
 namespace TallerMecanica.App.Consola
 {

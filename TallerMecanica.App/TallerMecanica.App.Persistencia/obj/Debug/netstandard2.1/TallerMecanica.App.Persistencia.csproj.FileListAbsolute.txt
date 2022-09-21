@@ -1,0 +1,12 @@
+C:\Repo\Personal\TallerMecanica.App\TallerMecanica.App.Persistencia\obj\Debug\netstandard2.1\TallerMecanica.App.Persistencia.csprojAssemblyReference.cache
+C:\Repo\Personal\TallerMecanica.App\TallerMecanica.App.Persistencia\obj\Debug\netstandard2.1\TallerMecanica.App.Persistencia.AssemblyInfoInputs.cache
+C:\Repo\Personal\TallerMecanica.App\TallerMecanica.App.Persistencia\obj\Debug\netstandard2.1\TallerMecanica.App.Persistencia.AssemblyInfo.cs
+C:\Repo\Personal\TallerMecanica.App\TallerMecanica.App.Persistencia\obj\Debug\netstandard2.1\TallerMecanica.App.Persistencia.csproj.CoreCompileInputs.cache
+C:\Repo\Personal\TallerMecanica.App\TallerMecanica.App.Persistencia\bin\Debug\netstandard2.1\TallerMecanica.App.Persistencia.deps.json
+C:\Repo\Personal\TallerMecanica.App\TallerMecanica.App.Persistencia\bin\Debug\netstandard2.1\TallerMecanica.App.Persistencia.dll
+C:\Repo\Personal\TallerMecanica.App\TallerMecanica.App.Persistencia\bin\Debug\netstandard2.1\TallerMecanica.App.Persistencia.pdb
+C:\Repo\Personal\TallerMecanica.App\TallerMecanica.App.Persistencia\bin\Debug\netstandard2.1\TallerMecanica.App.Dominio.dll
+C:\Repo\Personal\TallerMecanica.App\TallerMecanica.App.Persistencia\bin\Debug\netstandard2.1\TallerMecanica.App.Dominio.pdb
+C:\Repo\Personal\TallerMecanica.App\TallerMecanica.App.Persistencia\obj\Debug\netstandard2.1\TallerMecanica.App.Persistencia.csproj.CopyComplete
+C:\Repo\Personal\TallerMecanica.App\TallerMecanica.App.Persistencia\obj\Debug\netstandard2.1\TallerMecanica.App.Persistencia.dll
+C:\Repo\Personal\TallerMecanica.App\TallerMecanica.App.Persistencia\obj\Debug\netstandard2.1\TallerMecanica.App.Persistencia.pdb
