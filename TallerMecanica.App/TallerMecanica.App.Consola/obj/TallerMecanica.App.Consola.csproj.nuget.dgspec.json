@@ -25,6 +25,9 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
+              "C:\\Repo\\Personal\\TallerMecanica.App\\TallerMecanica.App.Dominio\\TallerMecanica.App.Dominio.csproj": {
+                "projectPath": "C:\\Repo\\Personal\\TallerMecanica.App\\TallerMecanica.App.Dominio\\TallerMecanica.App.Dominio.csproj"
+              },
               "C:\\Repo\\Personal\\TallerMecanica.App\\TallerMecanica.App.Persistencia\\TallerMecanica.App.Persistencia.csproj": {
                 "projectPath": "C:\\Repo\\Personal\\TallerMecanica.App\\TallerMecanica.App.Persistencia\\TallerMecanica.App.Persistencia.csproj"
               }
