@@ -7,7 +7,7 @@ namespace TallerMecanica.App.Dominio.Entidades
 {
     public class Revision
     {
-        public int MatenimientoId { get; set; }
+        public int RevisionId { get; set; }
         public Mantenimiento TipoMantenimiento { get; set; }
         public DateTime FechaMantenimiento { get; set; }
         public Estado EstadoAceite { get; set; }

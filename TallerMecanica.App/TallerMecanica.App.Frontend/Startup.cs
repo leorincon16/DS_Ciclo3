@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TallerMecanica.App.Persistencia.AppRepositorios;
 
 namespace TallerMecanica.App.Frontend
 {
@@ -24,6 +25,12 @@ namespace TallerMecanica.App.Frontend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddScoped<IRepositorioCliente,RepositorioCliente>();
+            services.AddScoped<IRepositorioRevision,RepositorioRevision>();
+            services.AddScoped<IRepositorioRepuesto,RepositorioRepuesto>();
+            services.AddScoped<IRepositorioTecnico,RepositorioTecnico>();
+            services.AddScoped<IRepositorioVehiculo,RepositorioVehiculo>();
+            services.AddScoped<IRepositorioPersona,RepositorioPersona>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

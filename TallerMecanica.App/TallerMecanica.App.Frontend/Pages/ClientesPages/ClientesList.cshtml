@@ -1,0 +1,53 @@
+﻿@page
+@model ClientesModel
+@{
+    ViewData["Title"] = "Lista Clientes";
+}
+
+<div class="text-center">
+    <table class="table">
+        <thead class="bg-primayi">
+            <tr>
+                <th scope="col">Id</th>
+                @* <th scope="col" class="text_center">Numero Identificación</th> *@
+                <th scope="col" class="text_center">Nombres</th>
+                <th scope="col" class="text_center">Apellidos</th>
+                <th scope="col" class="text_center">Dirección</th>
+                <th scope="col" class="text_center">Email</th>
+                <th scope="col" class="text_center">Telefono</th>
+                @* <th scope="col" class="text_center">Genero</th> *@
+                <th scope="col" class="text_center">Ciudad</th>
+                @* <th scope="col" class="text_center">Fecha Ingreso</th> *@
+                <th scope="col" class="text_center">Acciones</th>
+            </tr>    
+        </thead>
+            @if(Model.listaClientes!=null)
+            {
+                @foreach (var cliente in Model.listaClientes)
+                {
+                    <tr>
+                        <td>@cliente.PersonaId</td>
+                        @* <td>@cliente.NumeroIdentificacion</td> *@
+                        <td>@cliente.Nombres</td>
+                        <td>@cliente.Apellidos</td>
+                        <td>@cliente.Direccion</td>
+                        <td>@cliente.Email</td>
+                        <td>@cliente.Telefono</td>
+                        @* <td>@cliente.Genero</td> *@
+                        <td>@cliente.Ciudad</td>
+                        @* <td>@cliente.FechaIngreso</td> *@
+                        <td>
+                            <a class="btn btn-success btn-sm" asp-page="Edit" asp-route-idCliente="@cliente.PersonaId">Editar</a> |
+                            <a class="btn btn-warning btn-sm" asp-page="./ClienteDetalles" asp-route-idCliente="@cliente.PersonaId">Detalles</a> |
+                            <a class="btn btn-danger btn-sm" asp-page="Delete" asp-route-idCliente="@cliente.PersonaId">Eliminar</a>
+                        </td>
+                    </tr>
+
+                } 
+            }else{
+                <tr>
+                    <td class="text-center bg-success text-white">Lista vacia</td>
+                </tr>
+            }
+    </table>
+</div>

@@ -7,7 +7,7 @@ namespace TallerMecanica.App.Dominio.Entidades
 {
     public class Vehiculo
     {
-        public string VehiculoId{get;set;}
+        public int VehiculoId{get;set;}
         public string Marca{get;set;}
         public string Color{get;set;}
         public string Tipo{get;set;}

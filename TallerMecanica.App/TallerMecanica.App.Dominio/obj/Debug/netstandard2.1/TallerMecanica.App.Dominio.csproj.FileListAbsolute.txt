@@ -1,9 +1,9 @@
 C:\Repo\Personal\TallerMecanica.App\TallerMecanica.App.Dominio\bin\Debug\netstandard2.1\TallerMecanica.App.Dominio.deps.json
 C:\Repo\Personal\TallerMecanica.App\TallerMecanica.App.Dominio\bin\Debug\netstandard2.1\TallerMecanica.App.Dominio.dll
 C:\Repo\Personal\TallerMecanica.App\TallerMecanica.App.Dominio\bin\Debug\netstandard2.1\TallerMecanica.App.Dominio.pdb
-C:\Repo\Personal\TallerMecanica.App\TallerMecanica.App.Dominio\obj\Debug\netstandard2.1\TallerMecanica.App.Dominio.csprojAssemblyReference.cache
 C:\Repo\Personal\TallerMecanica.App\TallerMecanica.App.Dominio\obj\Debug\netstandard2.1\TallerMecanica.App.Dominio.AssemblyInfoInputs.cache
 C:\Repo\Personal\TallerMecanica.App\TallerMecanica.App.Dominio\obj\Debug\netstandard2.1\TallerMecanica.App.Dominio.AssemblyInfo.cs
 C:\Repo\Personal\TallerMecanica.App\TallerMecanica.App.Dominio\obj\Debug\netstandard2.1\TallerMecanica.App.Dominio.csproj.CoreCompileInputs.cache
 C:\Repo\Personal\TallerMecanica.App\TallerMecanica.App.Dominio\obj\Debug\netstandard2.1\TallerMecanica.App.Dominio.dll
 C:\Repo\Personal\TallerMecanica.App\TallerMecanica.App.Dominio\obj\Debug\netstandard2.1\TallerMecanica.App.Dominio.pdb
+C:\Repo\Personal\TallerMecanica.App\TallerMecanica.App.Dominio\obj\Debug\netstandard2.1\TallerMecanica.App.Dominio.csprojAssemblyReference.cache

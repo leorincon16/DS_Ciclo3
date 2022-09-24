@@ -13,6 +13,9 @@ namespace TallerMecanica.App.Persistencia.AppRepositorios
         public RepositorioCliente(ApplicationContext appContext){
             _appcontext = appContext;
         }
+        public RepositorioCliente(){
+            _appcontext = new ApplicationContext();
+        }
         public Cliente AddCliente(Cliente cliente)
         {
             var clienteAdicionado=_appcontext.Clientes.Add(cliente);
@@ -31,14 +34,14 @@ namespace TallerMecanica.App.Persistencia.AppRepositorios
             }
         }
 
-        public IEnumerable<Cliente> GetAllCliente()
+        public IEnumerable<Cliente> GetAllClientes()
         {
             return _appcontext.Clientes;
         }
 
-        public Cliente GetCliente(int idCliente)
+        public Cliente GetCliente(int clienteId)
         {
-            return _appcontext.Clientes.FirstOrDefault(b=>b.PersonaId==idCliente);
+            return _appcontext.Clientes.FirstOrDefault(b=>b.PersonaId==clienteId);
         }
 
         public Cliente UpdateCliente(Cliente cliente)

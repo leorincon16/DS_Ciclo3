@@ -7,6 +7,11 @@ namespace TallerMecanica.App.Consola
     class Program
     {
         private static IRepositorioCliente _repoCliente = new RepositorioCliente(new ApplicationContext());
+        private static IRepositorioRepuesto _repoRepuesto = new RepositorioRepuesto(new ApplicationContext());
+        private static IRepositorioRevision _repoRevision = new RepositorioRevision(new ApplicationContext());
+        private static IRepositorioTecnico _repoTecnico = new RepositorioTecnico(new ApplicationContext());
+        private static IRepositorioVehiculo _repoVehiculo = new RepositorioVehiculo(new ApplicationContext());
+
         static void Main(string[] args)
         {
             // Console.WriteLine("Hello World!");
@@ -20,6 +25,10 @@ namespace TallerMecanica.App.Consola
             };
             _repoCliente.AddCliente(cliente);
         }
+        // private static void ReadCliente(){
+        //     var cliente = new 
+        // }
+
 
     }
 }

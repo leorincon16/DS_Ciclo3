@@ -1,0 +1,52 @@
+@page
+@model TallerMecanica.App.Frontend.Pages.ClientesPages.ClienteDetalles
+@{
+    ViewData["Title"] = "ClienteDetalles";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row flex align-items-center justify-content-center">
+
+    <div class="col-6 mt-4">
+        <div class="border p-2">
+            <h2 class="text-center fs-4">Detalles del Cliente</h2>
+            <div class="mt-4">
+                <label class="p-1" asp-for="elCliente.NumeroIdentificacion"></label>:
+                @Html.DisplayFor(m=>m.elCliente.NumeroIdentificacion)
+            </div>
+
+            <div class="">
+                <label class="p-1" asp-for="elCliente.Nombres"></label>:
+                @Html.DisplayFor(m=>m.elCliente.Nombres)
+            </div>
+
+            <div class="">
+                <label class="p-1" asp-for="elCliente.Apellidos"></label>:
+                @Html.DisplayFor(m=>m.elCliente.Apellidos)
+            </div>
+
+            <div class="">
+                <label class="p-1" asp-for="elCliente.Direccion"></label>:
+                @Html.DisplayFor(m=>m.elCliente.Direccion)
+            </div>
+
+            <div class="">
+                <label class="p-1" asp-for="elCliente.Telefono"></label>:
+                @Html.DisplayFor(m=>m.elCliente.Telefono)
+            </div>
+
+            <div class="">
+                <label class="p-1" asp-for="elCliente.Email"></label>:
+                @Html.DisplayFor(m=>m.elCliente.Email)
+            </div>
+
+            <div class="justify-center item-center text-center mt-3 flex">
+                <p>¿ Estas seguro que se desea eliminar este registro ?</p>
+                <div class="">
+                    <a asp-page="Index" class="btn btn-lg btn-primary">No</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

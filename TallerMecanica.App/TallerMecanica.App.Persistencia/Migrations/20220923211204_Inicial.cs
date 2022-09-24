@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TallerMecanica.App.Persistencia.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,7 +31,8 @@ namespace TallerMecanica.App.Persistencia.Migrations
                 name: "Cliente",
                 columns: table => new
                 {
-                    PersonaId = table.Column<int>(type: "int", nullable: false)
+                    PersonaId = table.Column<int>(type: "int", nullable: false),
+                    FechaIngreso = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -68,7 +69,8 @@ namespace TallerMecanica.App.Persistencia.Migrations
                 name: "Vehiculos",
                 columns: table => new
                 {
-                    VehiculoId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    VehiculoId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Marca = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Color = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Tipo = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -91,7 +93,7 @@ namespace TallerMecanica.App.Persistencia.Migrations
                 name: "Revisiones",
                 columns: table => new
                 {
-                    MatenimientoId = table.Column<int>(type: "int", nullable: false)
+                    RevisionId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TipoMantenimiento = table.Column<int>(type: "int", nullable: false),
                     FechaMantenimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -99,13 +101,13 @@ namespace TallerMecanica.App.Persistencia.Migrations
                     EstadoFiltroGasolina = table.Column<int>(type: "int", nullable: false),
                     EstadoFiltroAire = table.Column<int>(type: "int", nullable: false),
                     ObservacionMantenimiento = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SuVehiculoVehiculoId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    SuVehiculoVehiculoId = table.Column<int>(type: "int", nullable: true),
                     SuTecnicoPersonaId = table.Column<int>(type: "int", nullable: true),
                     Valor = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Revisiones", x => x.MatenimientoId);
+                    table.PrimaryKey("PK_Revisiones", x => x.RevisionId);
                     table.ForeignKey(
                         name: "FK_Revisiones_Tecnicos_SuTecnicoPersonaId",
                         column: x => x.SuTecnicoPersonaId,
@@ -127,23 +129,23 @@ namespace TallerMecanica.App.Persistencia.Migrations
                     RepuestoId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NombreRespuesto = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SuRevisionMatenimientoId = table.Column<int>(type: "int", nullable: true)
+                    SuRevisionRevisionId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Repuestos", x => x.RepuestoId);
                     table.ForeignKey(
-                        name: "FK_Repuestos_Revisiones_SuRevisionMatenimientoId",
-                        column: x => x.SuRevisionMatenimientoId,
+                        name: "FK_Repuestos_Revisiones_SuRevisionRevisionId",
+                        column: x => x.SuRevisionRevisionId,
                         principalTable: "Revisiones",
-                        principalColumn: "MatenimientoId",
+                        principalColumn: "RevisionId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Repuestos_SuRevisionMatenimientoId",
+                name: "IX_Repuestos_SuRevisionRevisionId",
                 table: "Repuestos",
-                column: "SuRevisionMatenimientoId");
+                column: "SuRevisionRevisionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Revisiones_SuTecnicoPersonaId",

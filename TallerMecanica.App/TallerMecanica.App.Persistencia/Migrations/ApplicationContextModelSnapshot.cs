@@ -65,19 +65,19 @@ namespace TallerMecanica.App.Persistencia.Migrations
                     b.Property<string>("NombreRespuesto")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SuRevisionMatenimientoId")
+                    b.Property<int?>("SuRevisionRevisionId")
                         .HasColumnType("int");
 
                     b.HasKey("RepuestoId");
 
-                    b.HasIndex("SuRevisionMatenimientoId");
+                    b.HasIndex("SuRevisionRevisionId");
 
                     b.ToTable("Repuestos");
                 });
 
             modelBuilder.Entity("TallerMecanica.App.Dominio.Entidades.Revision", b =>
                 {
-                    b.Property<int>("MatenimientoId")
+                    b.Property<int>("RevisionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -100,8 +100,8 @@ namespace TallerMecanica.App.Persistencia.Migrations
                     b.Property<int?>("SuTecnicoPersonaId")
                         .HasColumnType("int");
 
-                    b.Property<string>("SuVehiculoVehiculoId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("SuVehiculoVehiculoId")
+                        .HasColumnType("int");
 
                     b.Property<int>("TipoMantenimiento")
                         .HasColumnType("int");
@@ -109,7 +109,7 @@ namespace TallerMecanica.App.Persistencia.Migrations
                     b.Property<double>("Valor")
                         .HasColumnType("float");
 
-                    b.HasKey("MatenimientoId");
+                    b.HasKey("RevisionId");
 
                     b.HasIndex("SuTecnicoPersonaId");
 
@@ -120,8 +120,10 @@ namespace TallerMecanica.App.Persistencia.Migrations
 
             modelBuilder.Entity("TallerMecanica.App.Dominio.Entidades.Vehiculo", b =>
                 {
-                    b.Property<string>("VehiculoId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("VehiculoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<int>("ClienteId")
                         .HasColumnType("int");
@@ -178,7 +180,7 @@ namespace TallerMecanica.App.Persistencia.Migrations
                 {
                     b.HasOne("TallerMecanica.App.Dominio.Entidades.Revision", "SuRevision")
                         .WithMany("SusRepuestos")
-                        .HasForeignKey("SuRevisionMatenimientoId");
+                        .HasForeignKey("SuRevisionRevisionId");
 
                     b.Navigation("SuRevision");
                 });

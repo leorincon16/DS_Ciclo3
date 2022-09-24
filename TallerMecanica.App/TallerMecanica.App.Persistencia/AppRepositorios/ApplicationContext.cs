@@ -18,12 +18,12 @@ namespace TallerMecanica.App.Persistencia.AppRepositorios
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder){
             if(!optionsBuilder.IsConfigured){
-                optionsBuilder.UseSqlServer("Data Source = DESKTOP-PCDN2RJ\\SQLEXPRESS01; Initial Catalog = TallerMecanica1; Integrated Security=True; MultipleActiveResultSets=True; Application Name=EntityFramework");
+                optionsBuilder.UseSqlServer("Data Source = DESKTOP-PCDN2RJ\\SQLEXPRESS01; Initial Catalog = TallerAutomotriz; Integrated Security=True; MultipleActiveResultSets=True; Application Name=EntityFramework");
             }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder){
             modelBuilder.Entity<Revision>()
-            .HasKey(b=>b.MatenimientoId);
+            .HasKey(b=>b.RevisionId);
             modelBuilder.Entity<Persona>()
             .HasKey(b=>b.PersonaId);
             // modelBuilder.Entity<Tecnico>()

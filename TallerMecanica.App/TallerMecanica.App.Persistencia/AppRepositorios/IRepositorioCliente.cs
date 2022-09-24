@@ -6,9 +6,9 @@ using TallerMecanica.App.Dominio.Entidades;
 
 namespace TallerMecanica.App.Persistencia.AppRepositorios
 {
-    public interface IRepositorioCliente : IDisposable
+    public interface IRepositorioCliente
     {
-        IEnumerable<Cliente> GetAllCliente();
+        IEnumerable<Cliente> GetAllClientes();
         Cliente AddCliente(Cliente cliente);
         Cliente UpdateCliente(Cliente cliente);
         Boolean DeleteCliente(Cliente cliente);
